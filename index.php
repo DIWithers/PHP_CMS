@@ -1,12 +1,9 @@
 <?php 
 include "includes/header.php";
 ?>
-    <!-- Navigation -->
      <?php include "includes/navigation.php"; ?>
 
-
-    <!-- Page Content -->
-    <div class="container">
+            <div class="container">
 
         <div class="row">
 
@@ -33,7 +30,6 @@ include "includes/header.php";
                 <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
 
-                <!-- Pager -->
                 <ul class="pager">
                     <li class="previous">
                         <a href="#">&larr; Older</a>
@@ -49,10 +45,7 @@ include "includes/header.php";
             <?php include "includes/sidebar.php"; ?>
 
             </div>
-
         </div>
-        <!-- /.row -->
-
         <hr>
             <?php include "includes/footer.php"; ?>
 
