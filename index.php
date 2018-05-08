@@ -1,13 +1,10 @@
 <?php include "includes/header.php"; ?>
 <?php include "includes/navigation.php"; ?>
 
-
       <div class="container">
-
         <div class="row">
-
-            <!-- Blog Entries Column -->
             <div class="col-md-8">
+
                  <?php 
                     $query = "SELECT * FROM posts";
                     $select_all_posts_query = mysqli_query($connection, $query);
@@ -19,12 +16,11 @@
                         $post_content = $row['post_content'];
                         echo $post_title;
                  ?>
+
                 <h1 class="page-header">
                     Page Heading
                     <small>Secondary Text</small>
                 </h1>
-
-                <!-- Blog Post -->
                 <h2>
                     <a href="#"><?php echo $post_title ?></a>
                 </h2>
@@ -40,7 +36,7 @@
                  <hr>                        
                    <?php 
                  } ?>
-                 
+
                 <ul class="pager">
                     <li class="previous">
                         <a href="#">&larr; Older</a>
@@ -49,12 +45,9 @@
                         <a href="#">Newer &rarr;</a>
                     </li>
                 </ul>
-
+                
             </div>
-
-            <!-- Blog Sidebar Widgets Column -->
             <?php include "includes/sidebar.php"; ?>
-
             </div>
         </div>
         <hr>
