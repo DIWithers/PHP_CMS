@@ -20,6 +20,7 @@
                         echo "<li><a href='#'>{$cat_title}</a></>";
                     }
                     ?>
+                    <li><a href='admin'>Admin</a></>
                 </ul>
             </div>
         </div>
