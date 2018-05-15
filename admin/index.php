@@ -3,7 +3,7 @@
 <body>
     <?php include "includes/admin_header.php" ?>
         <div id="wrapper">
-            <?php include "includes/navigation.php" ?>
+            <?php include "includes/admin_navigation.php" ?>
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <div class="row">
