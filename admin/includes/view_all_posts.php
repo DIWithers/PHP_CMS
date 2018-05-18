@@ -37,8 +37,16 @@
                                                     <td>{$post_tags}</td>
                                                     <td>{$post_comment_count}</td>
                                                     <td>{$post_date}</td>
+                                                    <td><a href='posts.php?delete={$post_id}'>Delete</a></td>
                                                 </tr> ";    
                                     }
                                 ?>   
                             </tbody>
                       </table>
+<?php
+    if (isset($_GET['delete'])) {
+        $post_id_to_delete = $_GET['delete'];
+        $query = "DELETE FROM posts WHERE post_id = {$post_id_to_delete} ";
+        $deletion_query = mysqli_query($connection, $query);
+    }
+?>                      
