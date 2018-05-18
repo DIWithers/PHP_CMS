@@ -15,6 +15,7 @@
         $post_comment_count = 4;
 
         move_uploaded_file($post_image_temp, "../images/$post_image");
+        
         $query = "INSERT INTO posts(
             post_category_id,
             post_title,
@@ -35,8 +36,9 @@
             '{$post_tags}', 
             {$post_comment_count}, 
             '{$post_status}') ";
-        echo $query;
+
         $create_post_query = mysqli_query($connection, $query);
+        confirmQuery($create_post_query);
 
     }
 ?>
