@@ -27,15 +27,28 @@
     </div>
     <div class="form-group">
         <label for="post_category_id">Post Category Id</label>
-        <input value="<?php echo $post_cat ?>" type="text" class="form-control" name="post_category_id">
+        <div>
+            <select name="post_category" id="post_category">
+                <?php
+                        $query = "SELECT * FROM categories";
+                        $select_categories = mysqli_query($connection, $query);
+                        confirmQuery($select_categories);
+                        while($row = mysqli_fetch_assoc($select_categories)) {
+                            $cat_id = $row['cat_id'];
+                            $cat_title = $row['cat_title'];
+                            echo "<option value='{$cat_title}'>{$cat_title}</option>";
+                        }
+                ?>
+            </select>
+        </div>
     </div> 
     <div class="form-group">
         <label for="author">Post Author</label>
-        <input value="<?php echo $post_author ?>" type="text" class="form-control" name="author">
+        <input value="<?php echo $post_author; ?>" type="text" class="form-control" name="author">
     </div>
     <div class="form-group">
         <label for="post_status">Post Staus</label>
-        <input value="<?php echo $post_status ?>" type="text" class="form-control" name="post_status">
+        <input value="<?php echo $post_status; ?>" type="text" class="form-control" name="post_status">
     </div>
     <div class="form-group">
         <label for="post_image">Post Image</label>
@@ -44,11 +57,11 @@
     </div>
     <div class="form-group">
         <label for="post_tags">Post Tags</label>
-        <input value="<?php echo $post_tags ?>" type="text" class="form-control" name="post_tags">
+        <input value="<?php echo $post_tags; ?>" type="text" class="form-control" name="post_tags">
     </div>
     <div class="form-group">
         <label for="post_content">Post Content</label>
-        <textarea id="" cols="30" rows="10" class="form-control" name="post_content" required><?php echo $post_content ?></textarea>
+        <textarea id="" cols="30" rows="10" class="form-control" name="post_content" required><?php echo $post_content; ?></textarea>
     </div>    
     <div class="form-group">
         <input type="submit" class="btn btn-primary" name="create_post" value="UPDATE">
