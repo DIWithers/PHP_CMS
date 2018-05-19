@@ -10,7 +10,7 @@
                       <?php
                          $sources['add_post'] = "includes/add_post.php";
                          $sources['view_all_posts'] = "includes/view_all_posts.php";
-
+                         $sources['edit_post'] = "includes/edit_post.php";
                     ?>
                      <?php 
                         if(isset($_GET['source'])) {
