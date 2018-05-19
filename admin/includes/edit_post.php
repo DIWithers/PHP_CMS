@@ -17,7 +17,35 @@
             $post_date = $row['post_date'];  
         }
     }
+    if(isset($_POST['update_post'])) {
+        $post_title = $_POST['title'];
+        $post_author = $_POST['author'];
+        $post_category = $_POST['post_category'];
+        $post_status = $_POST['post_status'];
+        $post_tags = $_POST['post_tags'];
+        $post_content = $_POST['post_content'];
+        
+        if (!empty($_FILES['post_image']['name']) || is_uploaded_file($_FILES['post_image']['tmp_name'])) {
+            $post_image = $_FILES['post_image']['name'];
+            $post_image_temp = $_FILES['post_image']['tmp_name'];
+    
+            move_uploaded_file($post_image_temp, "../images/$post_image");
+        }
+        
+        $query = "UPDATE posts SET 
+            post_category_id = '{$post_category_id}', 
+            post_title = '{$post_title}', 
+            post_author = '{$post_author}', 
+            post_date = now(), 
+            post_image = '{$post_image}', 
+            post_content = '{$post_content}', 
+            post_tags = '{$post_tags}', 
+            post_status = '{$post_status}' 
+            WHERE post_id = {$post_id_to_edit}";
 
+        $update_post_query = mysqli_query($connection, $query);
+        confirmQuery($update_post_query);
+    }
 ?>
 
 <form action="" method="post" enctype="multipart/form-data">
@@ -64,6 +92,6 @@
         <textarea id="" cols="30" rows="10" class="form-control" name="post_content" required><?php echo $post_content; ?></textarea>
     </div>    
     <div class="form-group">
-        <input type="submit" class="btn btn-primary" name="create_post" value="UPDATE">
+        <input type="submit" class="btn btn-primary" name="update_post" value="UPDATE">
     </div>                   
 </form>
