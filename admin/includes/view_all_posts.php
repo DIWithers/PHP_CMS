@@ -27,16 +27,16 @@
                                         $post_tags = $row['post_tags'];
                                         $post_comment_count = $row['post_comment_count'];
                                         $post_date = $row['post_date'];  
-
-                                        $query = "SELECT * FROM categories WHERE cat_id = {$post_category_id}";
-                                        $select_categories_id = mysqli_query($connection, $query);
-                                        $num_categories = mysqli_num_rows($select_categories_id);
-
-
+                                       
                                         echo " <tr>
                                                     <td>{$post_id}</td>
                                                     <td>{$post_author}</td>
                                                     <td>{$post_title}</td> ";
+
+                                                    $query = "SELECT * FROM categories WHERE cat_id = $post_category_id ";
+                                                    $select_categories_id = mysqli_query($connection, $query);
+                                                    $num_categories = mysqli_num_rows($select_categories_id);
+
                                                     if ($num_categories > 0) {
                                                     while($row = mysqli_fetch_assoc($select_categories_id)) {
                                                         
@@ -45,9 +45,9 @@
                                                         } 
                                                     }
                                                     else {
-                                                        $cat_id = "None";
+                                                        $cat_title = "None";
                                                     }
-                                              echo "<td>{$cat_id}</td>";
+                                              echo "<td>{$cat_title}</td>";
                                         echo "
                                                     <td>{$post_status}</td>
                                                     <td><img class='post-thumbnail' src='../images/{$post_image}' alt='post image'></td>

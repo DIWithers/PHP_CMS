@@ -33,7 +33,7 @@
         }
         
         $query = "UPDATE posts SET 
-            post_category_id = '{$post_category_id}', 
+            post_category_id = '{$post_category}', 
             post_title = '{$post_title}', 
             post_author = '{$post_author}', 
             post_date = now(), 
@@ -45,6 +45,7 @@
 
         $update_post_query = mysqli_query($connection, $query);
         confirmQuery($update_post_query);
+        header("Location: posts.php");
     }
 ?>
 
@@ -64,7 +65,7 @@
                         while($row = mysqli_fetch_assoc($select_categories)) {
                             $cat_id = $row['cat_id'];
                             $cat_title = $row['cat_title'];
-                            echo "<option value='{$cat_title}'>{$cat_title}</option>";
+                            echo "<option value='{$cat_id}'>{$cat_title}</option>";
                         }
                 ?>
             </select>
