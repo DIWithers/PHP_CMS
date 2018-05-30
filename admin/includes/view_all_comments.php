@@ -33,25 +33,20 @@
                                                     <td>{$comment_author}</td>
                                                     <td>{$comment_content}</td> ";
 
-                                            //         $query = "SELECT * FROM categories WHERE cat_id = $post_category_id ";
-                                            //         $select_categories_id = mysqli_query($connection, $query);
-                                            //         $num_categories = mysqli_num_rows($select_categories_id);
-
-                                            //         if ($num_categories > 0) {
-                                            //         while($row = mysqli_fetch_assoc($select_categories_id)) {
-                                                        
-                                            //                 $cat_id = $row['cat_id'];
-                                            //                 $cat_title = $row['cat_title'];
-                                            //             } 
-                                            //         }
-                                            //         else {
-                                            //             $cat_title = "None";
-                                            //         }
-                                            //   echo "<td>{$cat_title}</td>";
                                         echo "
                                                     <td>{$comment_email}</td>
-                                                    <td>{$comment_status}</td>
-                                                    <td>{$comment_post_id}</td>
+                                                    <td>{$comment_status}</td> ";
+                                                    
+                                                    $query = "SELECT * FROM posts WHERE post_id = $comment_post_id";
+                                                    $original_post = mysqli_query($connection, $query);
+                                                    while($row = mysqli_fetch_assoc($original_post)) {
+                                                    $post_id =  $row['post_id'];
+                                                    $post_title =  $row['post_title'];
+                                            
+                                        }
+                                        echo "
+                                                    <td><a href='../post.php?p_id=$post_id'</a>{$post_title}</td>
+
                                                     <td>{$comment_date}</td>
                                                     <td><a href='comments.php?source='>Approve</a></td>
                                                     <td><a href='comments.php?source='>Unapprove</a></td>
