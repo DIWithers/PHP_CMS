@@ -48,8 +48,8 @@
                                                     <td><a href='../post.php?p_id=$post_id'</a>{$post_title}</td>
 
                                                     <td>{$comment_date}</td>
-                                                    <td><a href='comments.php?source='>Approve</a></td>
-                                                    <td><a href='comments.php?source='>Unapprove</a></td>
+                                                    <td><a href='comments.php?approve=$comment_id'>Approve</a></td>
+                                                    <td><a href='comments.php?unapprove=$comment_id'>Unapprove</a></td>
                                                     <td><a href='comments.php?delete={$comment_id}'>Delete</a></td>
                                                 </tr> ";    
                                     }
@@ -57,6 +57,20 @@
                             </tbody>
                       </table>
 <?php
+
+    if (isset($_GET['approve'])) {
+        $comment_id_to_update = $_GET['approve'];
+        $query = "UPDATE comments SET comment_status = 'approved' WHERE comment_id = {$comment_id_to_update} ";
+        $unapprove_query = mysqli_query($connection, $query);
+        header("Location: comments.php");
+    }
+    if (isset($_GET['unapprove'])) {
+        $comment_id_to_update = $_GET['unapprove'];
+        $query = "UPDATE comments SET comment_status = 'unapproved' WHERE comment_id = {$comment_id_to_update} ";
+        $unapprove_query = mysqli_query($connection, $query);
+        header("Location: comments.php");
+    }
+
     if (isset($_GET['delete'])) {
         $comment_id_to_delete = $_GET['delete'];
         $query = "DELETE FROM comments WHERE comment_id = {$comment_id_to_delete} ";
