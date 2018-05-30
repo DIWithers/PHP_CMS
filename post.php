@@ -1,12 +1,13 @@
 <?php include "includes/header.php"; ?>
 <?php include "includes/navigation.php"; ?>
+<?php include "includes/db.php"; ?>
+
 
       <div class="container">
         <div class="row">
             <div class="col-md-8">
 
                  <?php 
-
                 if (isset($_GET['p_id'])){
                     $post_id = $_GET['p_id'];
                 }
@@ -41,24 +42,59 @@
                    <?php 
                  } ?>
 
-  <!-- Blog Comments -->
+                <?php 
+                    if (isset($_POST['create_comment'])) {
+                        $post_id = $_GET['p_id'];
+                        $comment_author = $_POST['comment_author'];
+                        $comment_email = $_POST['comment_author_email'];
+                        $comment_content = $_POST['comment_content'];
+                        $comment_status = "unapproved";
 
-                <!-- Comments Form -->
+                        $query = "INSERT INTO comments (
+                            comment_post_id,
+                            comment_author,
+                            comment_email,
+                            comment_content,
+                            comment_status, 
+                            comment_date)";
+                        $query .= "VALUES ( 
+                            {$post_id}, 
+                            '{$comment_author}', 
+                            '{$comment_email}', 
+                            '{$comment_content}', 
+                            'unapproved', 
+                            now()) ";
+
+                        $create_comment_query =  mysqli_query($connection, $query);
+                        if (!$create_comment_query) {
+                            die("QUERY FAILED: " . mysqli_error($connection));
+                        }
+                    }
+                    console.log($query);
+                    
+                 ?>
+
+ 
                 <div class="well">
-                    <h4>Leave a Comment:</h4>
-                    <form role="form">
+                    <form action="" method="post" role="form">
                         <div class="form-group">
-                            <textarea class="form-control" rows="3"></textarea>
+                            <label for="comment_author">Author</label>
+                            <input type="text" name="comment_author" class="form-control">
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="form-group">
+                            <label for="comment_email">Email</label>
+                            <input type="email" name="comment_author_email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="comment_email">Comment</label>
+                            <textarea name="comment_content" class="form-control" rows="3"></textarea>
+                        </div>
+                        <button type="submit" name="create_comment" class="btn btn-primary">Leave Comment</button>
                     </form>
                 </div>
 
                 <hr>
 
-                <!-- Posted Comments -->
-
-                <!-- Comment -->
                 <div class="media">
                     <a class="pull-left" href="#">
                         <img class="media-object" src="http://placehold.it/64x64" alt="">
@@ -71,7 +107,6 @@
                     </div>
                 </div>
 
-                <!-- Comment -->
                 <div class="media">
                     <a class="pull-left" href="#">
                         <img class="media-object" src="http://placehold.it/64x64" alt="">
