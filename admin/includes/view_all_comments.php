@@ -50,7 +50,7 @@
                                                     <td>{$comment_date}</td>
                                                     <td><a href='comments.php?source='>Approve</a></td>
                                                     <td><a href='comments.php?source='>Unapprove</a></td>
-                                                    <td><a href='comments.php?delete={$post_id}'>Delete</a></td>
+                                                    <td><a href='comments.php?delete={$comment_id}'>Delete</a></td>
                                                 </tr> ";    
                                     }
                                 ?>   
@@ -58,9 +58,9 @@
                       </table>
 <?php
     if (isset($_GET['delete'])) {
-        $post_id_to_delete = $_GET['delete'];
-        $query = "DELETE FROM posts WHERE post_id = {$post_id_to_delete} ";
+        $comment_id_to_delete = $_GET['delete'];
+        $query = "DELETE FROM comments WHERE comment_id = {$comment_id_to_delete} ";
         $deletion_query = mysqli_query($connection, $query);
-        header("Location: posts.php");
+        header("Location: comments.php");
     }
 ?>                      
