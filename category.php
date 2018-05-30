@@ -6,8 +6,19 @@
             <div class="col-md-8">
 
                  <?php 
-                    $query = "SELECT * FROM posts";
+
+                    if (isset($_GET['category'])) {
+                        $post_category_id = $_GET['category'];
+                    }
+
+                    $query = "SELECT * FROM posts WHERE post_category_id = $post_category_id ";
                     $select_all_posts_query = mysqli_query($connection, $query);
+
+                    $num_posts = mysqli_num_rows($select_all_posts_query);
+                    if ($num_posts ==  0) {
+                        echo "<h2> No posts in that category. </h2>";
+                    }
+
                     while($row = mysqli_fetch_assoc($select_all_posts_query)) {
                         $post_id = $row['post_id'];
                         $post_title = $row['post_title'];
