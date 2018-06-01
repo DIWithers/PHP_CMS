@@ -9,8 +9,8 @@
                                   <th>Email</th>
                                   <th>Role</th>
                                   <th>Edit</th>
-                                  <th>Set As Sub</th>
-                                  <th>Set As Admin</th>
+                                  <th>Set As</th>
+                                  <th>Set As</th>
                                   <th>Delete</th>
                               </tr>
                           </thead>
