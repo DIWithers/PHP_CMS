@@ -57,15 +57,15 @@
     <div class="form-group">
         <label for="post_category_id">Post Category Id</label>
         <div>
-            <select name="post_category" id="post_category">
+            <select name="user_role" id="user_role">
                 <?php
-                        $query = "SELECT * FROM categories";
-                        $select_categories = mysqli_query($connection, $query);
-                        confirmQuery($select_categories);
-                        while($row = mysqli_fetch_assoc($select_categories)) {
-                            $cat_id = $row['cat_id'];
-                            $cat_title = $row['cat_title'];
-                            echo "<option value='{$cat_id}'>{$cat_title}</option>";
+                        $query = "SELECT * FROM users";
+                        $select_users = mysqli_query($connection, $query);
+                        confirmQuery($select_users);
+                        while($row = mysqli_fetch_assoc($select_users)) {
+                            $user_id = $row['user_id'];
+                            $user_role = $row['user_role'];
+                            echo "<option value='{$user_id}'>{$user_role}</option>";
                         }
                 ?>
             </select>
