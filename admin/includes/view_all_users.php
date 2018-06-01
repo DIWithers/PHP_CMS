@@ -9,6 +9,8 @@
                                   <th>Email</th>
                                   <th>Role</th>
                                   <th>Edit</th>
+                                  <th>Set As Sub</th>
+                                  <th>Set As Admin</th>
                                   <th>Delete</th>
                               </tr>
                           </thead>
@@ -37,6 +39,8 @@
                                                     <td>{$user_email}</td>
                                                     <td>{$user_role}</td>
                                                     <td><a href='users.php?source=edit_user&u_id={$user_id}'>Edit</a></td>
+                                                    <td><a href='users.php?subscriber=$user_id'>Subscriber</a></td>
+                                                    <td><a href='users.php?admin=$user_id'>Admin</a></td>
                                                     <td><a href='users.php?delete={$user_id}'>Delete</a></td>
                                                 </tr>
                                              ";
@@ -46,17 +50,17 @@
                       </table>
 <?php
 
-    if (isset($_GET['approve'])) {
-        $comment_id_to_update = $_GET['approve'];
-        $query = "UPDATE comments SET comment_status = 'approved' WHERE comment_id = {$comment_id_to_update} ";
+    if (isset($_GET['subscriber'])) {
+        $user_id_to_update = $_GET['subscriber'];
+        $query = "UPDATE users SET user_role = 'Subscriber' WHERE user_id = {$user_id_to_update} ";
         $unapprove_query = mysqli_query($connection, $query);
-        header("Location: comments.php");
+        header("Location: users.php");
     }
-    if (isset($_GET['unapprove'])) {
-        $comment_id_to_update = $_GET['unapprove'];
-        $query = "UPDATE comments SET comment_status = 'unapproved' WHERE comment_id = {$comment_id_to_update} ";
+    if (isset($_GET['admin'])) {
+        $user_id_to_update = $_GET['admin'];
+        $query = "UPDATE users SET user_role = 'Admin' WHERE user_id = {$user_id_to_update} ";
         $unapprove_query = mysqli_query($connection, $query);
-        header("Location: comments.php");
+        header("Location: users.php");
     }
 
     if (isset($_GET['delete'])) {

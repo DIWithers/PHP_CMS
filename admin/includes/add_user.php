@@ -25,7 +25,7 @@
             user_lastname, 
             user_email,
             user_image,
-            role
+            user_role
             ) ";
         $query .= "VALUES( 
             '{$username}', 
