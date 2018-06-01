@@ -27,7 +27,7 @@
 
                                         echo " <tr>
                                                     <td>{$user_id}</td>
-                                                    <td>{$user_name}</td>
+                                                    <td>{$username}</td>
                                                     <td>{$user_firstname}</td>
                                                     <td>{$user_lastname}</td>
                                                     <td>{$user_email}</td>
