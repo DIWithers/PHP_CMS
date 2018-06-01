@@ -7,11 +7,16 @@
         $username = $_POST['username'];
         $user_email = $_POST['user_email'];
         $user_password = $_POST[''];
- 
-        $user_image = $_FILES['user_image']['name'];
-        $user_image_temp = $_FILES['user_image']['tmp_name'];
 
-        move_uploaded_file($user_image_temp, "../images/$user_image");
+        if (!empty($_FILES['user_image']['name']) || is_uploaded_file($_FILES['user_image']['tmp_name'])) {
+            $user_image = $_FILES['user_image']['name'];
+            $user_image_temp = $_FILES['user_image']['tmp_name'];
+    
+            move_uploaded_file($user_image_temp, "../images/$user_image");
+        }
+        else {
+            $user_image = 'badge.png';
+        }
         
         $query = "INSERT INTO users(
             username,

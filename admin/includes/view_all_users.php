@@ -2,6 +2,7 @@
                           <thead>
                               <tr>
                                   <th>Id</th>
+                                  <th>Image</th>
                                   <th>Username</th>
                                   <th>Firstname</th>
                                   <th>Lastname</th>
@@ -27,6 +28,7 @@
 
                                         echo " <tr>
                                                     <td>{$user_id}</td>
+                                                    <td><img class='post-thumbnail' src='../images/{$user_image}' alt='user image'></td>
                                                     <td>{$username}</td>
                                                     <td>{$user_firstname}</td>
                                                     <td>{$user_lastname}</td>
