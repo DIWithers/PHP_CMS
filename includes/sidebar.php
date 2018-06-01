@@ -12,8 +12,25 @@
                         </div>
                     </form>
                 </div>
-                <div class="well">
 
+                <div class="well">
+                    <h4>Login</h4>
+                    <form action="includes/login.php" method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="username" placeholder="Enter username">
+                        </div>
+                        <div class="form-group">
+                        <input type="password" class="form-control" name="password" placeholder="Enter password">
+                        </div>
+                        <div class="form-group">
+                            <span class="input-group btn">
+                                <button class="btn btn-primary" name="login" type="submit">Submit</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="well">
                 <?php 
                     $query = "SELECT * FROM categories";
                     $select_categories_sidebar = mysqli_query($connection, $query);
@@ -35,3 +52,4 @@
                     </div>
                 </div>
                 <?php  include "widget.php";?>
+            </div>
