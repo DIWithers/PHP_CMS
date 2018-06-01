@@ -1,41 +1,39 @@
 <?php
     global $connection;
-    if(isset($_POST['create_post'])) {
-        $post_title = $_POST['title'];
-        $post_author = $_POST['author'];
-        $post_category_id = $_POST['post_category'];
-        $post_status = $_POST['post_status'];
+    if(isset($_POST['create_user'])) {
+        $user_firstname = $_POST['user_firstname'];
+        $user_lastname = $_POST['user_lastname'];
+        $user_role = $_POST['user_role'];
+        $username = $_POST['username'];
+        $user_email = $_POST['user_email'];
+        $user_password = $_POST[''];
  
-        $post_image = $_FILES['post_image']['name'];
-        $post_image_temp = $_FILES['post_image']['tmp_name'];
+        $user_image = $_FILES['user_image']['name'];
+        $user_image_temp = $_FILES['user_image']['tmp_name'];
 
-        $post_tags = $_POST['post_tags'];
-        $post_content = $_POST['post_content'];
-        $post_date = date('d-m-y');
-
-        move_uploaded_file($post_image_temp, "../images/$post_image");
+        move_uploaded_file($user_image_temp, "../images/$user_image");
         
-        $query = "INSERT INTO posts(
-            post_category_id,
-            post_title,
-            post_author,
-            post_date,
-            post_image, 
-            post_content,
-            post_tags,
-            post_status)  ";
+        $query = "INSERT INTO users(
+            username,
+            user_password,
+            user_firstname,
+            user_lastname, 
+            user_email,
+            user_image,
+            role
+            ) ";
         $query .= "VALUES( 
-            {$post_category_id}, 
-            '{$post_title}', 
-            '{$post_author}', 
-            now(), 
-            '{$post_image}', 
-            '{$post_content}', 
-            '{$post_tags}', 
-            '{$post_status}') ";
+            '{$username}', 
+            '{$user_password}', 
+            '{$user_firstname}', 
+            '{$user_lastname}', 
+            '{$user_email}', 
+            '{$user_image}', 
+            '{$user_role}' 
+            )";
 
-        $create_post_query = mysqli_query($connection, $query);
-        confirmQuery($create_post_query);
+        $create_user_query = mysqli_query($connection, $query);
+        confirmQuery($create_user_query);
 
     }
 ?>
@@ -53,6 +51,7 @@
         <label for="user_role">Role</label>
         <div>
             <select name="user_role" id="user_role">
+                <option value='subscriber'>Select Role</option>
                 <?php
                         $query = "SELECT * FROM roles";
                         $select_role = mysqli_query($connection, $query);
@@ -84,6 +83,6 @@
         <input type="password" class="form-control" name="user_password">
     </div>
     <div class="form-group">
-        <input type="submit" class="btn btn-primary" name="create_post" value="Add User">
+        <input type="submit" class="btn btn-primary" name="create_user" value="Add User">
     </div>                   
 </form>
