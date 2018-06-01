@@ -60,9 +60,9 @@
     }
 
     if (isset($_GET['delete'])) {
-        $comment_id_to_delete = $_GET['delete'];
-        $query = "DELETE FROM comments WHERE comment_id = {$comment_id_to_delete} ";
+        $user_id_to_delete = $_GET['delete'];
+        $query = "DELETE FROM users WHERE user_id = {$user_id_to_delete} ";
         $deletion_query = mysqli_query($connection, $query);
-        header("Location: comments.php");
+        header("Location: users.php");
     }
 ?>                      
