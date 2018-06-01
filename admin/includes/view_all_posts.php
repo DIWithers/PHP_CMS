@@ -40,17 +40,17 @@
                                                     $num_categories = mysqli_num_rows($select_categories_id);
 
                                                     if ($num_categories > 0) {
-                                                    while($row = mysqli_fetch_assoc($select_categories_id)) {
-                                                        
-                                                            $cat_id = $row['cat_id'];
-                                                            $cat_title = $row['cat_title'];
-                                                        } 
-                                                    }
+                                                        while($row = mysqli_fetch_assoc($select_categories_id)) {
+                                                            
+                                                                $cat_id = $row['cat_id'];
+                                                                $cat_title = $row['cat_title'];
+                                                            } 
+                                                        }
                                                     else {
                                                         $cat_title = "None";
                                                     }
-                                              echo "<td>{$cat_title}</td>";
                                         echo "
+                                                    <td>{$cat_title}</td>
                                                     <td>{$post_status}</td>
                                                     <td><img class='post-thumbnail' src='../images/{$post_image}' alt='post image'></td>
                                                     <td>{$post_tags}</td>
