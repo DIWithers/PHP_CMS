@@ -135,10 +135,10 @@
                                 ['Data', 'Count'],
                                     
                                     <?php 
-                                        $element_text = ['Active Posts', 'Comments','Users', 'Categories', ];
-                                        $element_count = [$post_count, $comment_count, $user_count, $category_count,];
+                                        $element_text = ['Active Posts', 'Comments','Users', 'Categories'];
+                                        $element_count = [$post_count, $comment_count, $user_count, $category_count]; //find map equivalent!
                                         
-                                        for ($i = 0; $i < 4; $i++) {
+                                        for ($i = 0; $i < count($element_text); $i++) {
                                             $category = $element_text[$i];
                                             $count = $element_count[$i];
 
