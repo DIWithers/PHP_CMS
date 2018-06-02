@@ -132,6 +132,10 @@
                         $query = "SELECT * FROM comments WHERE comment_status = 'unapproved'";
                         $select_all_unapproved_comments = mysqli_query($connection, $query);
                         $comment_unapproved_count = mysqli_num_rows($select_all_unapproved_comments);
+
+                        $query = "SELECT * FROM users WHERE user_role = 'subscriber'";
+                        $select_all_subscriber_users = mysqli_query($connection, $query);
+                        $user_subscriber_count = mysqli_num_rows($select_all_subscriber_users);                        
                     ?>
 
 
@@ -143,12 +147,12 @@
                             function drawChart() {
 
                                 var data = google.visualization.arrayToDataTable([
-                                ['Data', 'Total', 'Pending'],
+                                ['Data', 'Total', 'Pending/Non-Admin'],
                                     
                                     <?php 
                                         $element_text = ['Posts', 'Comments', 'Users', 'Categories'];
                                         $element_count = [$post_count, $comment_count, $user_count, $category_count]; //find map equivalent!
-                                        $pending_element_count = [$post_draft_count, $comment_unapproved_count, 0, 0]; //find map equivalent!
+                                        $pending_element_count = [$post_draft_count, $comment_unapproved_count, $user_subscriber_count, 0]; //find map equivalent!
                                         
                                         for ($i = 0; $i < count($element_text); $i++) {
                                             $category = $element_text[$i];
