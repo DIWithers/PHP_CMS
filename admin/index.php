@@ -176,6 +176,7 @@
 
                                 chart.draw(data, google.charts.Bar.convertOptions(options));
                             }
+
                         </script>      
                         <div id="columnchart_material" style="width: 'auto'; height: 500px;"></div>                                          
                     </div>

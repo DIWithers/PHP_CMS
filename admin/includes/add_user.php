@@ -40,9 +40,10 @@
         $create_user_query = mysqli_query($connection, $query);
         confirmQuery($create_user_query);
 
+        echo "User successfully created: " . " " . "<a href='users.php'>View Users</a>";
     }
 ?>
-
+<h3><span class='text-wrapper-2 text-wrapper-green' id='user_created_msg' style='display:none;'>User created!</span></h3>
 <form action="" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="user_firstname">First Name</label>
