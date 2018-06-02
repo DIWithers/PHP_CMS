@@ -80,7 +80,7 @@
     </div>
     <div class="form-group">
         <label for="post_content">Post Content</label>
-        <textarea id="" cols="30" rows="10" class="form-control" name="post_content" required></textarea>
+        <textarea id="editor" style="display:none"cols="30" rows="10" class="form-control" name="post_content" required></textarea>
     </div>    
     <div class="form-group">
         <input type="submit" class="btn btn-primary" name="create_post" value="Publish">
