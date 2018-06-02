@@ -33,7 +33,7 @@
                                         echo " <tr>
                                                     <td>{$post_id}</td>
                                                     <td>{$post_author}</td>
-                                                    <td>{$post_title}</td> ";
+                                                    <td><a href='../post.php?p_id={$post_id}'>{$post_title}</a></td> ";
 
                                                     $query = "SELECT * FROM categories WHERE cat_id = $post_category_id ";
                                                     $select_categories_id = mysqli_query($connection, $query);
