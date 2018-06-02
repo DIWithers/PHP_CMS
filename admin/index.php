@@ -106,9 +106,9 @@
                                             <?php 
                                                 $query = "SELECT * FROM categories";
                                                 $select_all_categories = mysqli_query($connection, $query);
-                                                $categories_count = mysqli_num_rows($select_all_categories);
+                                                $category_count = mysqli_num_rows($select_all_categories);
                                             ?>                                        
-                                            <div class='huge'><?php echo $categories_count; ?></div>
+                                            <div class='huge'><?php echo $category_count; ?></div>
                                             <div>Categories</div>
                                         </div>
                                     </div>
@@ -130,18 +130,28 @@
                             google.charts.setOnLoadCallback(drawChart);
 
                             function drawChart() {
+
                                 var data = google.visualization.arrayToDataTable([
-                                ['Year', 'Sales', 'Expenses', 'Profit'],
-                                ['2014', 1000, 400, 200],
-                                ['2015', 1170, 460, 250],
-                                ['2016', 660, 1120, 300],
-                                ['2017', 1030, 540, 350]
+                                ['Data', 'Count'],
+                                    
+                                    <?php 
+                                        $element_text = ['Active Posts', 'Categories', 'Users', 'Comments'];
+                                        $element_count = [$post_count, $category_count, $user_count, $comment_count];
+                                        
+                                        for ($i = 0; $i < 4; $i++) {
+                                            $category = $element_text[$i];
+                                            $count = $element_count[$i];
+
+                                            echo "['{$category}'" . "," . "{$count}],";
+                                        }
+                                        
+                                        ?>
                                 ]);
 
                                 var options = {
                                     chart: {
-                                        title: 'Company Performance',
-                                        subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+                                        title: '',
+                                        subtitle: '',
                                     }
                                 };
 
@@ -150,7 +160,7 @@
                                 chart.draw(data, google.charts.Bar.convertOptions(options));
                             }
                         </script>      
-                        <div id="columnchart_material" style="width: 800px; height: 500px;"></div>                                          
+                        <div id="columnchart_material" style="width: 'auto'; height: 500px;"></div>                                          
                     </div>
 
                 </div>
