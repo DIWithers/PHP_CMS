@@ -129,13 +129,21 @@
                         $select_all_draft_posts = mysqli_query($connection, $query);
                         $post_draft_count = mysqli_num_rows($select_all_draft_posts);
 
+                        $query = "SELECT * FROM posts WHERE post_status = 'published'";
+                        $select_all_published_posts = mysqli_query($connection, $query);
+                        $post_published_count = mysqli_num_rows($select_all_published_posts);
+
                         $query = "SELECT * FROM comments WHERE comment_status = 'unapproved'";
                         $select_all_unapproved_comments = mysqli_query($connection, $query);
-                        $comment_unapproved_count = mysqli_num_rows($select_all_unapproved_comments);
+                        $comment_pending_count = mysqli_num_rows($select_all_unapproved_comments);
 
                         $query = "SELECT * FROM users WHERE user_role = 'subscriber'";
                         $select_all_subscriber_users = mysqli_query($connection, $query);
-                        $user_subscriber_count = mysqli_num_rows($select_all_subscriber_users);                        
+                        $user_subscriber_count = mysqli_num_rows($select_all_subscriber_users);            
+                        
+                        $query = "SELECT * FROM users WHERE user_role = 'admin'";
+                        $select_all_admin_users = mysqli_query($connection, $query);
+                        $user_admin_count = mysqli_num_rows($select_all_admin_users); 
                     ?>
 
 
@@ -147,20 +155,17 @@
                             function drawChart() {
 
                                 var data = google.visualization.arrayToDataTable([
-                                ['Data', 'Total', 'Pending/Non-Admin'],
+                                ['Data', 'Count'],
                                     
                                     <?php 
-                                        $element_text = ['Posts', 'Comments', 'Users', 'Categories'];
-                                        $element_count = [$post_count, $comment_count, $user_count, $category_count]; //find map equivalent!
-                                        $pending_element_count = [$post_draft_count, $comment_unapproved_count, $user_subscriber_count, 0]; //find map equivalent!
+                                        $element_text = ['All Posts', 'Published Posts', 'Draft Posts', 'All Comments', 'Pending Comments', 'All Users', 'Subscribers', 'Admin', 'Categories'];
+                                        $element_count = [$post_count, $post_published_count, $post_draft_count, $comment_count, $comment_pending_count, $user_count, $user_subscriber_count, $user_admin_count, $category_count]; //find map equivalent!
                                         
                                         for ($i = 0; $i < count($element_text); $i++) {
                                             $category = $element_text[$i];
                                             $count = $element_count[$i];
-                                            $pending_category = $pending_element_text[$i];
-                                            $pending_count = $pending_element_count[$i];
 
-                                            echo "['{$category}'" . "," . "{$count}" . "," . "{$pending_count}],";
+                                            echo "['{$category}'" . "," . "{$count}],";
                                         }
                                     ?>
                                 ]);
