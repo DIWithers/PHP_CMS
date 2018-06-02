@@ -3,12 +3,7 @@
 $(document).ready(function() {
 
     ClassicEditor
-    .create( document.querySelector( '#editor', {
-        ckfinder: {
-            uploadUrl: '../images/'
-        }
-        
-    } ) )
+    .create( document.querySelector( '#editor') )
     .then( editor => {
 
     })
