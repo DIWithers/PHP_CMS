@@ -45,7 +45,20 @@
 
         $update_post_query = mysqli_query($connection, $query);
         confirmQuery($update_post_query);
-        header("Location: ../post.php?p_id={$post_id}");
+        echo "
+            <div class='post-success'>
+                <h3>
+                    Post Updated Successfully!     
+                    <a href='../post.php?p_id={$post_id}'>
+                        <button class='btn btn-success'>View Post</button>
+                    </a>
+                    or
+                    <a href='posts.php'>
+                        <button class='btn btn-success'>Edit More Posts</button>
+                    </a>
+                </h3>
+            </div>
+        ";
     }
 ?>
 
