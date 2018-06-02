@@ -45,7 +45,7 @@
 
         $update_post_query = mysqli_query($connection, $query);
         confirmQuery($update_post_query);
-        header("Location: posts.php");
+        header("Location: ../post.php?p_id={$post_id}");
     }
 ?>
 
