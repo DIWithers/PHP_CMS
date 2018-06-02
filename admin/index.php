@@ -124,6 +124,17 @@
                         </div>
                     </div>
 
+                    <?php 
+                        $query = "SELECT * FROM posts WHERE post_status = 'draft'";
+                        $select_all_draft_posts = mysqli_query($connection, $query);
+                        $post_draft_count = mysqli_num_rows($select_all_draft_posts);
+
+                        $query = "SELECT * FROM comments WHERE comment_status = 'unapproved'";
+                        $select_all_unapproved_comments = mysqli_query($connection, $query);
+                        $comment_unapproved_count = mysqli_num_rows($select_all_unapproved_comments);
+                    ?>
+
+
                     <div class="row">
                         <script type="text/javascript">
                             google.charts.load('current', {'packages':['bar']});
@@ -132,20 +143,22 @@
                             function drawChart() {
 
                                 var data = google.visualization.arrayToDataTable([
-                                ['Data', 'Count'],
+                                ['Data', 'Total', 'Pending'],
                                     
                                     <?php 
-                                        $element_text = ['Active Posts', 'Comments','Users', 'Categories'];
+                                        $element_text = ['Posts', 'Comments', 'Users', 'Categories'];
                                         $element_count = [$post_count, $comment_count, $user_count, $category_count]; //find map equivalent!
+                                        $pending_element_count = [$post_draft_count, $comment_unapproved_count, 0, 0]; //find map equivalent!
                                         
                                         for ($i = 0; $i < count($element_text); $i++) {
                                             $category = $element_text[$i];
                                             $count = $element_count[$i];
+                                            $pending_category = $pending_element_text[$i];
+                                            $pending_count = $pending_element_count[$i];
 
-                                            echo "['{$category}'" . "," . "{$count}],";
+                                            echo "['{$category}'" . "," . "{$count}" . "," . "{$pending_count}],";
                                         }
-                                        
-                                        ?>
+                                    ?>
                                 ]);
 
                                 var options = {
