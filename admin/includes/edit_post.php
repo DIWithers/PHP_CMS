@@ -76,14 +76,31 @@
         <label for="author">Post Author</label>
         <input value="<?php echo $post_author; ?>" type="text" class="form-control" name="author">
     </div>
+
     <div class="form-group">
-        <label for="post_status">Post Staus</label>
-        <input value="<?php echo $post_status; ?>" type="text" class="form-control" name="post_status">
+        <label for "post_status">Post status</label>
+        <div>
+        <select name="post_status" id="post_status">
+            <?php
+                $query = "SELECT * FROM post_status";
+                $select_post_status = mysqli_query($connection, $query);
+                confirmQuery($select_post_status);
+                while($row = mysqli_fetch_assoc($select_post_status)) {
+                    $status_id = $row['post_status_id'];
+                    $db_post_status = $row['status'];
+                    if ($post_status === $db_post_status) echo "<option value='{$status_id}' selected>{$db_post_status}</option>";
+                    else echo "<option value='{$status_id}'>{$db_post_status}</option>";
+                }
+            ?>
+        </select>
+        </div>
     </div>
-    <div class="form-group">
+    <div class="form-group buffer">
         <label for="post_image">Post Image</label>
         <img src="../images/<?php echo $post_image; ?>" width="100" alt="post image">
-        <input type="file" class="form-control" name="post_image">
+        <div class="buffer">
+            <input type="file" class="form-control" name="post_image">
+        </div>
     </div>
     <div class="form-group">
         <label for="post_tags">Post Tags</label>
