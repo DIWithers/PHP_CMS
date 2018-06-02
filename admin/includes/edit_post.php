@@ -88,8 +88,8 @@
                 while($row = mysqli_fetch_assoc($select_post_status)) {
                     $status_id = $row['post_status_id'];
                     $db_post_status = $row['status'];
-                    if ($post_status === $db_post_status) echo "<option value='{$status_id}' selected>{$db_post_status}</option>";
-                    else echo "<option value='{$status_id}'>{$db_post_status}</option>";
+                    if ($post_status === $db_post_status) echo "<option value='{$db_post_status}' selected>{$db_post_status}</option>";
+                    else echo "<option value='{$db_post_status}'>{$db_post_status}</option>";
                 }
             ?>
         </select>
