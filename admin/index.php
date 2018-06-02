@@ -135,8 +135,8 @@
                                 ['Data', 'Count'],
                                     
                                     <?php 
-                                        $element_text = ['Active Posts', 'Categories', 'Users', 'Comments'];
-                                        $element_count = [$post_count, $category_count, $user_count, $comment_count];
+                                        $element_text = ['Active Posts', 'Comments','Users', 'Categories', ];
+                                        $element_count = [$post_count, $comment_count, $user_count, $category_count,];
                                         
                                         for ($i = 0; $i < 4; $i++) {
                                             $category = $element_text[$i];
