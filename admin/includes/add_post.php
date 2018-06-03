@@ -36,6 +36,15 @@
 
         $create_post_query = mysqli_query($connection, $query);
         confirmQuery($create_post_query);
+        echo "
+        <div class='bg-success text-center'>
+            <h3>
+                Post Updated Successfully!     
+            </h3>
+        </a>
+        </div>
+        <div class='buffer'></div>
+    ";
 
     }
 ?>
@@ -67,8 +76,20 @@
         <input type="text" class="form-control" name="author">
     </div>
     <div class="form-group">
-        <label for="post_status">Post Staus</label>
-        <input type="text" class="form-control" name="post_status">
+        <label for "post_status">Post status</label>
+        <div>
+            <select name="post_status" id="post_status">
+                <?php
+                    $query = "SELECT * FROM post_status";
+                    $select_post_status = mysqli_query($connection, $query);
+                    confirmQuery($select_post_status);
+                    while($row = mysqli_fetch_assoc($select_post_status)) {
+                        $db_post_status = $row['status'];
+                        echo "<option value='{$db_post_status}'>{$db_post_status}</option>";
+                    }
+                ?>
+            </select>
+        </div>
     </div>
     <div class="form-group">
         <label for="post_image">Post Image</label>

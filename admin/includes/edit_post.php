@@ -46,7 +46,7 @@
         $update_post_query = mysqli_query($connection, $query);
         confirmQuery($update_post_query);
         echo "
-            <div class='post-success'>
+            <div class='text-center'>
                 <h3>
                     Post Updated Successfully!     
                     <a href='../post.php?p_id={$post_id}'>
@@ -93,19 +93,19 @@
     <div class="form-group">
         <label for "post_status">Post status</label>
         <div>
-        <select name="post_status" id="post_status">
-            <?php
-                $query = "SELECT * FROM post_status";
-                $select_post_status = mysqli_query($connection, $query);
-                confirmQuery($select_post_status);
-                while($row = mysqli_fetch_assoc($select_post_status)) {
-                    $status_id = $row['post_status_id'];
-                    $db_post_status = $row['status'];
-                    if ($post_status === $db_post_status) echo "<option value='{$db_post_status}' selected>{$db_post_status}</option>";
-                    else echo "<option value='{$db_post_status}'>{$db_post_status}</option>";
-                }
-            ?>
-        </select>
+            <select name="post_status" id="post_status">
+                <?php
+                    $query = "SELECT * FROM post_status";
+                    $select_post_status = mysqli_query($connection, $query);
+                    confirmQuery($select_post_status);
+                    while($row = mysqli_fetch_assoc($select_post_status)) {
+                        $status_id = $row['post_status_id'];
+                        $db_post_status = $row['status'];
+                        if ($post_status === $db_post_status) echo "<option value='{$db_post_status}' selected>{$db_post_status}</option>";
+                        else echo "<option value='{$db_post_status}'>{$db_post_status}</option>";
+                    }
+                ?>
+            </select>
         </div>
     </div>
     <div class="form-group buffer">
