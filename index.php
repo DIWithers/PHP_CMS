@@ -1,6 +1,8 @@
 <?php include "includes/header.php"; ?>
 <?php include "includes/navigation.php"; ?>
 <?php ob_start(); ?>
+<?php session_start(); ?>
+
 
       <div class="container">
         <div class="row">
@@ -43,8 +45,13 @@
                     <hr>
                     <p><?php echo $post_content ?></p>
                     <a class="btn btn-primary" href="post.php?p_id=<?php echo $post_id ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                    <?php 
+                        if ($_SESSION['user_role'] === 'admin' || $_SESSION['user_role'] === 'Admin' ) {
+                            echo "<a class='btn btn-primary' href='admin/posts.php?source=edit_post&p_id=$post_id'>Edit Post <span class='glyphicon glyphicon-pencil side-buffer'></span></a>";
+                        }
+                    ?>
                      <hr>                        
-                     <?php echo $num_posts; }
+                     <?php }
                      } ?>
 
 
