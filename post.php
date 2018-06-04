@@ -44,9 +44,9 @@
                 <?php 
                     if (isset($_POST['create_comment'])) {
                         $post_id = $_GET['p_id'];
-                        $comment_author = $_POST['comment_author'];
-                        $comment_email = $_POST['comment_author_email'];
-                        $comment_content = $_POST['comment_content'];
+                        $comment_author = mysqli_real_escape_string($connection,$_POST['comment_author']);
+                        $comment_email = mysqli_real_escape_string($connection,$_POST['comment_author_email']);
+                        $comment_content = mysqli_real_escape_string($connection,$_POST['comment_content']);
                         $comment_status = "unapproved";
 
                         $query = "INSERT INTO comments (
@@ -75,20 +75,19 @@
                     }
                  ?>
 
- 
                 <div class="well">
                     <form action="" method="post" role="form">
                         <div class="form-group">
                             <label for="comment_author">Author</label>
-                            <input type="text" name="comment_author" class="form-control">
+                            <input type="text" name="comment_author" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="comment_email">Email</label>
-                            <input type="email" name="comment_author_email" class="form-control">
+                            <input type="email" name="comment_author_email" class="form-control" required>
                         </div>
                         <div class="form-group">
                             <label for="comment_email">Comment</label>
-                            <textarea name="comment_content" class="form-control" rows="3"></textarea>
+                            <textarea name="comment_content" class="form-control" rows="3" required></textarea>
                         </div>
                         <button type="submit" name="create_comment" class="btn btn-primary">Leave Comment</button>
                     </form>
