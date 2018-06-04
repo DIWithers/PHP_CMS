@@ -1,21 +1,36 @@
+<?php 
+    if (isset($_POST['check_box_array'])) {
+        foreach($_POST['check_box_array'] as $post_value_id) {
+            $bulk_options = $_POST['bulk_options'];
+
+            $queryAction['published'] = updatePostStatus($bulk_options, $post_value_id);
+            $queryAction['draft'] = updatePostStatus($bulk_options, $post_value_id);
+            
+        }
+    }
+?>
+
 <form action="" method="post">
     <table class="table table-bordered table-hover">
         <div id="bulkOptionContainer" class="col-xs-4">
-            <select name="" id="" class="form-control">
+            <select name="bulk_options" id="bulkOptions" class="form-control">
                 <option value="">Select Options</option>
-                <option value="">Published</option>
-                <option value="">Draft</option>
-                <option value="">Delete</option>
+                <option value="published">Published</option>
+                <option value="draft">Draft</option>
+                <option value="delete">Delete</option>
             </select>
         </div>
-        <div class="col-xs-4">
+        <div class="col-xs-4 post-options">
             <input type="submit" name="submit" class="btn btn-success" value="Apply">
-            <a class="btn btn-primary" href="add_post.php">Add New</a>
+            <a class="btn btn-primary" href="posts.php?source=add_post">Add New</a>
         </div>
 
 
         <thead>
             <tr>
+                <th>
+                    <input id="selectAllBoxes" type="checkbox">
+                </th>
                 <th>Id</th>
                 <th>Author</th>
                 <th>Title</th>
@@ -47,6 +62,10 @@
                 
                     echo "
                         <tr>
+                            <td>
+                                <input class='checkboxes' type='checkbox' name='check_box_array[]' value='{$post_id}'>
+                                </input>
+                            </td>
                             <td>{$post_id}</td>
                             <td>{$post_author}</td>
                             <td><a href='../post.php?p_id={$post_id}'>{$post_title}</a></td> ";
