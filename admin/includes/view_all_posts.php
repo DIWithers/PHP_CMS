@@ -63,7 +63,7 @@
                     echo "
                         <tr>
                             <td>
-                                <input class='checkboxes' type='checkbox' name='check_box_array[]' value='{$post_id}'>
+                                <input class='checkBoxes' type='checkbox' name='check_box_array[]' value='{$post_id}'>
                                 </input>
                             </td>
                             <td>{$post_id}</td>
