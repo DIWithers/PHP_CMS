@@ -3,11 +3,11 @@
 
 <?php 
     if (isset($_POST['submit'])) {
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        
         if (!empty($username) && !empty($email) && !empty($password)) {
-            $username = $_POST['username'];
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-    
             $username = mysqli_real_escape_string($connection, $username);
             $email = mysqli_real_escape_string($connection, $email);
             $password = mysqli_real_escape_string($connection, $password);
@@ -22,6 +22,13 @@
             $query .= "VALUES('{$username}', '{$email}', '{$password}', 'subscriber')";
             $register_user_query = mysqli_query($connection, $query);
             if (!$register_user_query) die("QUERY FAILED: " . mysqli_error($connection)); 
+            echo "
+            <div class='text-center bg-success'>
+                <h3>
+                    Registration submitted successfully
+                </h3>
+            </div>
+            ";
         }
     }
 ?>
