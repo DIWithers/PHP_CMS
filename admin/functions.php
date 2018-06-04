@@ -58,5 +58,6 @@
         global $connection;
         $query = "UPDATE posts SET post_status = '{$option}' WHERE post_id = '{$post_id}'";
         $update_post_query = mysqli_query($connection, $query);
+        confirmQuery($update_post_query);
     }
 ?>
