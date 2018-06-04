@@ -1,11 +1,11 @@
+
 <?php 
     if (isset($_POST['check_box_array'])) {
         foreach($_POST['check_box_array'] as $post_value_id) {
             $bulk_options = $_POST['bulk_options'];
-
             $queryAction['published'] = updatePostStatus($bulk_options, $post_value_id);
             $queryAction['draft'] = updatePostStatus($bulk_options, $post_value_id);
-            
+            $queryAction['delete'] = deletePost($post_value_id);
         }
     }
 ?>
@@ -101,9 +101,7 @@
     <?php
         if (isset($_GET['delete'])) {
             $post_id_to_delete = $_GET['delete'];
-            $query = "DELETE FROM posts WHERE post_id = {$post_id_to_delete} ";
-            $deletion_query = mysqli_query($connection, $query);
-            header("Location: posts.php");
+            deletePost($post_id_to_delete);
         }
     ?>                      
 </form>

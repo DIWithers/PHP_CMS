@@ -54,6 +54,14 @@
         } 
     }
 
+    function deletePost($post_id_to_delete) {
+        global $connection;
+        $query = "DELETE FROM posts WHERE post_id = {$post_id_to_delete} ";
+        $deletion_query = mysqli_query($connection, $query);
+        header("Location: posts.php");
+        // $confirmQuery($deletion_query);
+    }
+
     function updatePostStatus($option, $post_id) {
         global $connection;
         $query = "UPDATE posts SET post_status = '{$option}' WHERE post_id = '{$post_id}'";
