@@ -36,10 +36,14 @@
 
         $create_post_query = mysqli_query($connection, $query);
         confirmQuery($create_post_query);
+        $new_post_id = mysqli_insert_id($connection);
         echo "
         <div class='bg-success text-center'>
             <h3>
                 Post Updated Successfully!     
+                <a href='../post.php?p_id={$new_post_id}'>
+                    <button class='btn btn-success'>View Post</button>
+                </a>
             </h3>
         </a>
         </div>
