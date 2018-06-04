@@ -18,12 +18,12 @@
         }
     }
     if(isset($_POST['update_post'])) {
-        $post_title = $_POST['title'];
-        $post_author = $_POST['author'];
+        $post_title = str_replace("'", "''", $_POST['title']);
+        $post_author = str_replace("'", "''", $_POST['author']);
         $post_category = $_POST['post_category'];
         $post_status = $_POST['post_status'];
-        $post_tags = $_POST['post_tags'];
-        $post_content = $_POST['post_content'];
+        $post_tags = str_replace("'", "''", $_POST['post_tags']);
+        $post_content = str_replace("'", "''", $_POST['post_content']);
         
         if (!empty($_FILES['post_image']['name']) || is_uploaded_file($_FILES['post_image']['tmp_name'])) {
             $post_image = $_FILES['post_image']['name'];
