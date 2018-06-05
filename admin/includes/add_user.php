@@ -3,7 +3,7 @@
     if(isset($_POST['create_user'])) {
         $user_firstname = $_POST['user_firstname'];
         $user_lastname = $_POST['user_lastname'];
-        $user_role = $_POST['user_role'];
+        $user_role = strtolower($_POST['user_role']);
         $username = $_POST['username'];
         $user_email = $_POST['user_email'];
         $user_password = $_POST[''];
@@ -64,7 +64,7 @@
                         confirmQuery($select_role);
                         while($row = mysqli_fetch_assoc($select_role)) {
                             $role_id = $row['role_id'];
-                            $user_role = $row['user_role'];
+                            $user_role = ucfirst($row['user_role']);
                             echo "<option value='{$role_id}'>{$user_role}</option>";
                         }
                 ?>
