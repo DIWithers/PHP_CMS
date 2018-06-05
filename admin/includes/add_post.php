@@ -105,7 +105,7 @@
     </div>
     <div class="form-group">
         <label for="post_content">Post Content</label>
-        <textarea id="editor" cols="30" rows="10" class="form-control" name="post_content"></textarea>
+        <textarea id="add_post_editor" style="display: none" cols="30" rows="10" class="form-control" name="post_content"></textarea>
     </div>    
     <div class="form-group">
         <input type="submit" class="btn btn-primary" name="create_post" value="Publish">

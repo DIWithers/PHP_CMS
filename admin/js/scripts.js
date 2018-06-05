@@ -1,7 +1,17 @@
 $(document).ready(function() {
 
     ClassicEditor
-    .create( document.querySelector( '#editor') )
+    .create( document.querySelector( '#add_post_editor') )
+    .then( editor => {
+
+    })
+    .catch( error => {
+        console.error( error );
+    }
+    );
+
+    ClassicEditor
+    .create( document.querySelector( '#edit_post_editor') )
     .then( editor => {
 
     })
