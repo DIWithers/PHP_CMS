@@ -17,6 +17,7 @@
                 <option value="">Select Options</option>
                 <option value="published">Published</option>
                 <option value="draft">Draft</option>
+                <option value="clone">Clone</option>
                 <option value="delete">Delete</option>
             </select>
         </div>
