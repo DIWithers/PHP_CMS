@@ -23,7 +23,7 @@
         
       }
       $passwords_match = hash_equals($db_user_password, crypt($password, $db_user_password));
-
+      
       if ($username === $db_username && $passwords_match) {
         $_SESSION['username'] = $db_username;
         $_SESSION['firstname'] = $db_user_firstname;
@@ -34,6 +34,5 @@
       else {
         header("Location: ../index.php");
       }
-      
     }
 ?>

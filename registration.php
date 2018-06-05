@@ -12,13 +12,13 @@
             $email = mysqli_real_escape_string($connection, $email);
             $password = mysqli_real_escape_string($connection, $password);
     
-            $query = "SELECT randSalt FROM users";
-            $select_randsalt_query = mysqli_query($connection, $query);
-            if (!$select_randsalt_query) die("QUERY FAILED: " . mysqli_error($connection)); 
-            $row = mysqli_fetch_array($select_randsalt_query);
-            $salt = $row['randSalt'];
-            $password_encrypted = crypt($password, $salt);
-
+            $salt_characters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']; //0-35
+            $randSalt = "$2y$10$";
+            for ($i = 0; $i < 22; $i++) {
+                $randSalt .= $salt_characters[rand(0, count($salt_characters))];
+            }
+            $password_encrypted = crypt($password, $randSalt);
+            
             $query = "INSERT INTO users (username, user_email, user_password, user_role) ";
             $query .= "VALUES('{$username}', '{$email}', '{$password_encrypted}', 'subscriber')";
             $register_user_query = mysqli_query($connection, $query);
