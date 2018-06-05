@@ -3,9 +3,9 @@
     if (isset($_POST['check_box_array'])) {
         foreach($_POST['check_box_array'] as $post_value_id) {
             $bulk_options = $_POST['bulk_options'];
-            $queryAction['published'] = updatePostStatus($bulk_options, $post_value_id);
-            $queryAction['draft'] = updatePostStatus($bulk_options, $post_value_id);
-            $queryAction['delete'] = deletePost($post_value_id);
+            if ($bulk_options === 'draft' || $bulk_options === 'published') updatePostStatus($bulk_options, $post_value_id);
+            if ($bulk_options === 'delete') deletePost($post_value_id);
+            if ($bulk_options === 'clone') clonePost($post_value_id);
         }
     }
 ?>
@@ -97,11 +97,5 @@
                 }
             ?>   
         </tbody>
-    </table>
-    <?php
-        if (isset($_GET['delete'])) {
-            $post_id_to_delete = $_GET['delete'];
-            deletePost($post_id_to_delete);
-        }
-    ?>                      
+    </table>                     
 </form>
