@@ -18,7 +18,6 @@
        }
     }
 
-
     if(isset($_POST['edit_user'])) {
         $user_firstname = $_POST['user_firstname'];
         $user_lastname = $_POST['user_lastname'];
@@ -47,7 +46,6 @@
         $update_user_query = mysqli_query($connection, $query);
         confirmQuery($update_user_query);
         header("Location: users.php");
-        
 
     }
 ?>
@@ -72,8 +70,8 @@
                         confirmQuery($select_role);
                         while($row = mysqli_fetch_assoc($select_role)) {
                             $role_id = $row['role_id'];
-                            $dropdown_role = $row['user_role'];
-                            if ($user_role === $dropdown_role) echo "<option value='{$dropdown_role}' selected>{$dropdown_role}</option>";
+                            $dropdown_role = ucfirst($row['user_role']);
+                            if (strtolower($user_role) === strtolower($dropdown_role)) echo "<option value='{$dropdown_role}' selected>{$dropdown_role}</option>";
                             else echo "<option value='{$dropdown_role}'>{$dropdown_role}</option>";
                         }
                 ?>
