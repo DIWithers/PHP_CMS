@@ -17,7 +17,9 @@
         else {
             $user_image = 'badge.png';
         }
-        
+
+        $randSalt = generateRandomSalt();
+        $password_encrypted = crypt($user_password, $randSalt);
         $query = "INSERT INTO users(
             username,
             user_password,
@@ -29,7 +31,7 @@
             ) ";
         $query .= "VALUES( 
             '{$username}', 
-            '{$user_password}', 
+            '{$password_encrypted}', 
             '{$user_firstname}', 
             '{$user_lastname}', 
             '{$user_email}', 

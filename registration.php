@@ -12,11 +12,7 @@
             $email = mysqli_real_escape_string($connection, $email);
             $password = mysqli_real_escape_string($connection, $password);
     
-            $salt_characters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0']; //0-35
-            $randSalt = "$2y$10$";
-            for ($i = 0; $i < 22; $i++) {
-                $randSalt .= $salt_characters[rand(0, count($salt_characters))];
-            }
+            $randSalt = generateRandomSalt();
             $password_encrypted = crypt($password, $randSalt);
             
             $query = "INSERT INTO users (username, user_email, user_password, user_role) ";
