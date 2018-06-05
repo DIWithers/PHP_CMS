@@ -104,9 +104,6 @@
             <div class='bg-success text-center'>
                 <h3>
                     Post Cloned Successfully!     
-                    <a href='../post.php?p_id={$new_post_id}'>
-                        <button class='btn btn-success'>View Post</button>
-                    </a>
                 </h3>
             </a>
             </div>
