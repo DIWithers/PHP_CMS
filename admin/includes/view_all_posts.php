@@ -39,6 +39,7 @@
                 <th>Status</th>
                 <th>Image</th>
                 <th>Tags</th>
+                <th>Views</th>
                 <th>Comments</th>
                 <th>Date</th>
                 <th>Edit</th>
@@ -60,6 +61,8 @@
                     $post_tags = $row['post_tags'];
                     $post_comment_count = $row['post_comment_count'];
                     $post_date = $row['post_date'];  
+                    $post_views_count = $row['post_views_count'];  
+                    
                 
                     echo "
                         <tr>
@@ -90,6 +93,7 @@
                             <td>{$post_status}</td>
                             <td><img class='post-thumbnail' src='../images/{$post_image}' alt='post image'></td>
                             <td>{$post_tags}</td>
+                            <td>{$post_views_count}</td>
                             <td>{$post_comment_count}</td>
                             <td>{$post_date}</td>
                             <td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>
