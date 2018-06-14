@@ -93,7 +93,7 @@
                             <td>{$post_status}</td>
                             <td><img class='post-thumbnail' src='../images/{$post_image}' alt='post image'></td>
                             <td>{$post_tags}</td>
-                            <td>{$post_views_count}</td>
+                            <td><a href='posts.php?reset={$post_id}'>{$post_views_count}</a></td>
                             <td>{$post_comment_count}</td>
                             <td>{$post_date}</td>
                             <td><a href='posts.php?source=edit_post&p_id={$post_id}'>Edit</a></td>
@@ -104,3 +104,12 @@
         </tbody>
     </table>                     
 </form>
+
+<?php 
+    if (isset($_GET['delete'])) {
+        deletePost($_GET['delete']);
+    }
+    if (isset($_GET['reset'])) {
+        resetPostCount($_GET['reset']);
+    }
+?>

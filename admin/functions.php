@@ -56,10 +56,18 @@
 
     function deletePost($post_id_to_delete) {
         global $connection;
-        $query = "DELETE FROM posts WHERE post_id = {$post_id_to_delete} ";
+        $query = "DELETE FROM posts WHERE post_id =" . mysqli_real_escape_string($connection, $post_id_to_delete) . " ";
         $deletion_query = mysqli_query($connection, $query);
         header("Location: posts.php");
-        // $confirmQuery($deletion_query);
+        $confirmQuery($deletion_query);
+    }
+
+    function resetPostCount($post_id_to_update) {
+        global $connection;
+        $query = "UPDATE posts SET post_views_count = 0 WHERE post_id =" . mysqli_real_escape_string($connection, $post_id_to_update) . " ";
+        $reset_query = mysqli_query($connection, $query);
+        header("Location: posts.php");
+        // $confirmQuery($reset_query);
     }
 
     function clonePost($post_id_to_clone) {
