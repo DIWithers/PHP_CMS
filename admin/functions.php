@@ -72,17 +72,17 @@
 
     function clonePost($post_id_to_clone) {
         global $connection;
-        $query = "SELECT * FROM posts";
+        $query = "SELECT * FROM posts WHERE post_id =" . mysqli_real_escape_string($connection, $post_id_to_clone) . " " ;
         $select_posts = mysqli_query($connection, $query);
 
         while($row = mysqli_fetch_assoc($select_posts)) {
             $post_id = $row['post_id'];
-            $post_author = str_replace("'", "''", $row['post_author']);
-            $post_title = str_replace("'", "''", $row['post_title']);
+            $post_author = $row['post_author'];
+            $post_title = $row['post_title'];
             $post_category_id = $row['post_category_id'];
             $post_status = $row['post_status'];
             $post_image = $row['post_image'];
-            $post_tags = str_replace("'", "''", $row['post_tags']);
+            $post_tags = $row['post_tags'];
             $post_comment_count = $row['post_comment_count'];
             $post_date = $row['post_date'];  
         }
@@ -106,7 +106,7 @@
             '{$post_status}') ";
 
         $create_post_query = mysqli_query($connection, $query);
-        confirmQuery($create_post_query);
+        // confirmQuery($create_post_query);
         $new_post_id = mysqli_insert_id($connection);
         echo "
             <div class='bg-success text-center'>
