@@ -1,7 +1,7 @@
 <?php
     global $connection;
     if(isset($_POST['create_post'])) {
-        $post_title = str_replace("'", "''", $_POST['title']) ;
+        $post_title = str_replace("'", "''", $_POST['title']);
         $post_author = str_replace("'", "''", $_POST['author']);
         $post_category_id = $_POST['post_category'];
         $post_status = $_POST['post_status'];
